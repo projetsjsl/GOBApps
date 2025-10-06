@@ -488,7 +488,7 @@ const GOBApps = () => {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 py-8 relative z-10 pb-32">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-3 sm:gap-4">
+        <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
           {apps.sort((a, b) => a.order - b.order).map(app => (
             <div
               key={app.id}
@@ -500,35 +500,35 @@ const GOBApps = () => {
             >
               <div
                 onClick={() => isEditing ? handleEdit(app) : handleOpenApp(app.url)}
-                className={`flex flex-col items-center space-y-1 sm:space-y-2 p-2 sm:p-3 rounded-2xl sm:rounded-3xl transition-all duration-300 ${
+                className={`flex flex-col items-center space-y-2 p-3 rounded-3xl transition-all duration-300 ${
                   isEditing 
                     ? 'cursor-pointer bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl' 
                     : 'cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl hover:scale-105 active:scale-95'
                 }`}
               >
                 <div className="relative">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-2xl shadow-2xl flex items-center justify-center border border-white/50 relative hexagon">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-2xl shadow-2xl flex items-center justify-center border border-white/50 relative hexagon">
+                    <div className="w-10 h-10 flex items-center justify-center">
                       {app.logo && app.logo.length <= 4 && /\p{Emoji}/u.test(app.logo) ? (
-                        <div className="text-2xl sm:text-3xl">{app.logo}</div>
+                        <div className="text-3xl">{app.logo}</div>
                       ) : app.logo ? (
                         <img 
                           src={app.logo} 
                           alt={app.name} 
-                          className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                          className="w-10 h-10 object-contain"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             const parent = e.currentTarget.parentElement;
                             if (parent && !parent.querySelector('.fallback-initial')) {
                               const fallback = document.createElement('div');
-                              fallback.className = 'fallback-initial w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-bold text-sm sm:text-lg rounded';
+                              fallback.className = 'fallback-initial w-10 h-10 bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-bold text-lg rounded';
                               fallback.textContent = app.name.charAt(0).toUpperCase();
                               parent.appendChild(fallback);
                             }
                           }}
                         />
                       ) : (
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center text-white font-bold text-sm sm:text-lg rounded">
+                        <div className="w-10 h-10 bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center text-white font-bold text-lg rounded">
                           {app.name.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -542,7 +542,7 @@ const GOBApps = () => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <p className="text-[9px] sm:text-[10px] font-semibold text-slate-900 line-clamp-1 drop-shadow-sm">{app.name}</p>
+                  <p className="text-[10px] font-semibold text-slate-900 line-clamp-1 drop-shadow-sm">{app.name}</p>
                 </div>
               </div>
             </div>
@@ -551,29 +551,27 @@ const GOBApps = () => {
           {isEditing && (
             <div
               onClick={handleAddNew}
-              className="flex flex-col items-center justify-center p-2 sm:p-3 rounded-2xl sm:rounded-3xl cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95"
+              className="flex flex-col items-center justify-center p-3 rounded-3xl cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-2xl shadow-2xl flex items-center justify-center border-2 border-dashed border-white/60 hover:border-blue-400/60 transition-all hexagon">
-                <Plus size={20} className="sm:hidden text-slate-600" />
-                <Plus size={28} className="hidden sm:block text-slate-600" />
+              <div className="w-16 h-16 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-2xl shadow-2xl flex items-center justify-center border-2 border-dashed border-white/60 hover:border-blue-400/60 transition-all hexagon">
+                <Plus size={28} className="text-slate-600" />
               </div>
-              <p className="text-[9px] sm:text-[10px] font-semibold text-slate-700 mt-1 sm:mt-2">Ajouter</p>
+              <p className="text-[10px] font-semibold text-slate-700 mt-2">Ajouter</p>
             </div>
           )}
         </div>
       </main>
 
-      <div className="fixed bottom-20 sm:bottom-28 right-4 sm:right-6 z-40">
+      <div className="fixed bottom-28 right-6 z-40">
         <button
           onClick={() => setIsEditing(!isEditing)}
-          className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+          className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
             isEditing 
               ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-blue-500/50' 
               : 'bg-white/90 backdrop-blur-xl text-slate-700 border-2 border-white/50 shadow-xl'
           }`}
         >
-          {isEditing ? <Check size={20} className="sm:hidden" /> : <Edit3 size={18} className="sm:hidden" />}
-          {isEditing ? <Check size={28} className="hidden sm:block" /> : <Edit3 size={24} className="hidden sm:block" />}
+          {isEditing ? <Check size={28} /> : <Edit3 size={24} />}
         </button>
       </div>
 
@@ -911,6 +909,13 @@ const GOBApps = () => {
       )}
 
       <style>{`
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(-1deg); }
+          50% { transform: rotate(1deg); }
+        }
+        .animate-wiggle {
+          animation: wiggle 0.3s ease-in-out infinite;
+        }
         .hexagon {
           clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
@@ -934,4 +939,3 @@ const GOBApps = () => {
 };
 
 export default GOBApps;
-
