@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Edit3, X, Download, Upload, Settings, Palette, Check, Trash2, List } from 'lucide-react';
+import { apps as configuredApps, getAppUrl } from './config/apps';
 
 // Popular emojis for app icons
 const popularEmojis = [
@@ -202,11 +203,21 @@ const GOBApps = () => {
     if (stored) {
       setApps(JSON.parse(stored));
     } else {
+      // Convert configured apps to the App interface format
+      const configuredAppsList: App[] = configuredApps.map((app, index) => ({
+        id: app.id,
+        name: app.name,
+        url: getAppUrl(app, window.location.origin),
+        logo: app.icon,
+        order: index
+      }));
+
       const defaultApps: App[] = [
-        { id: '1', name: 'GitHub', url: 'https://github.com', logo: '💻', order: 0 },
-        { id: '2', name: 'LinkedIn', url: 'https://linkedin.com', logo: '💼', order: 1 },
-        { id: '3', name: 'Google', url: 'https://google.com', logo: '🌐', order: 2 },
-        { id: '4', name: 'Yahoo', url: 'https://yahoo.com', logo: '📧', order: 3 }
+        ...configuredAppsList,
+        { id: 'github', name: 'GitHub', url: 'https://github.com', logo: '💻', order: configuredAppsList.length },
+        { id: 'linkedin', name: 'LinkedIn', url: 'https://linkedin.com', logo: '💼', order: configuredAppsList.length + 1 },
+        { id: 'google', name: 'Google', url: 'https://google.com', logo: '🌐', order: configuredAppsList.length + 2 },
+        { id: 'yahoo', name: 'Yahoo', url: 'https://yahoo.com', logo: '📧', order: configuredAppsList.length + 3 }
       ];
       setApps(defaultApps);
     }
