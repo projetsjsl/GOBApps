@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, ExternalLink, Github, Zap, BarChart3, Settings, Globe, Star, ChevronRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, Zap, BarChart3, Settings, Globe, Star, ChevronRight, TrendingUp, Home } from 'lucide-react';
 import { apps, getAppUrl, getCategories, filterApps, type App } from './config/apps';
+import StocksNewsTab from './components/StocksNewsTab';
 
 const GOBAppsHub = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState<'hub' | 'stocks'>('hub');
 
   // Update time every minute
   useEffect(() => {
@@ -55,6 +57,11 @@ const GOBAppsHub = () => {
     }
   };
 
+  // If stocks tab is active, render the stocks component
+  if (activeTab === 'stocks') {
+    return <StocksNewsTab />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
       {/* Background Effects */}
@@ -88,10 +95,36 @@ const GOBAppsHub = () => {
                 </div>
               </div>
               
-              <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
                 Découvrez notre suite d'applications intelligentes pour l'analyse financière, 
                 la gestion de portefeuille et l'automatisation des tâches.
               </p>
+
+              {/* Navigation Tabs */}
+              <div className="flex justify-center space-x-4">
+                <button
+                  onClick={() => setActiveTab('hub')}
+                  className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center space-x-2 ${
+                    activeTab === 'hub'
+                      ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30'
+                      : 'bg-white/10 text-slate-300 hover:bg-white/20 backdrop-blur-xl border border-white/20'
+                  }`}
+                >
+                  <Home size={18} />
+                  <span>Hub Applications</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('stocks')}
+                  className={`px-6 py-3 rounded-xl font-medium transition-all flex items-center space-x-2 ${
+                    activeTab === 'stocks'
+                      ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30'
+                      : 'bg-white/10 text-slate-300 hover:bg-white/20 backdrop-blur-xl border border-white/20'
+                  }`}
+                >
+                  <TrendingUp size={18} />
+                  <span>Stocks & News</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
