@@ -1,0 +1,17 @@
+{
+  "last_update": "2025-10-02T00:56:51.924254",
+  "stocks": [
+    {
+      "ticker": "AAPL",
+      "timestamp": "2025-10-02T00:56:51.924020",
+      "price": "DEMO",
+      "change": "DEMO"
+    },
+    {
+      "ticker": "JNJ",
+      "timestamp": "2025-10-02T00:56:51.924026",
+      "price": "DEMO",
+      "change": "DEMO"
+    }
+  ]
+}
