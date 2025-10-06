@@ -1,6 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { TrendingUp, Clock, Calendar, Globe, DollarSign, BarChart3, Newspaper, Settings } from 'lucide-react';
 
+// Interface pour les thèmes (cohérence avec App.tsx)
+interface Theme {
+  id: string;
+  name: string;
+  sector: string;
+  description: string;
+  colors: {
+    headerFrom: string;
+    headerVia: string;
+    headerTo: string;
+    headerBorder: string;
+    background: string;
+    cardBg: string;
+    cardHover: string;
+    accent: string;
+    accentHover: string;
+    textPrimary: string;
+    textSecondary: string;
+  };
+}
+
 interface Stock {
   symbol: string;
   name: string;
@@ -35,6 +56,7 @@ interface EconomicEvent {
 const StocksNewsTab = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
+  const [currentTheme, setCurrentTheme] = useState<Theme | null>(null);
   const [myWatchlist, setMyWatchlist] = useState<Stock[]>([
     { symbol: 'AAPL', name: 'Apple', exchange: 'US' },
     { symbol: 'SHOP.TO', name: 'Shopify', exchange: 'TSX' },
@@ -67,11 +89,81 @@ const StocksNewsTab = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Load watchlist from localStorage
+  // Load watchlist and theme from localStorage
   useEffect(() => {
     const stored = localStorage.getItem('myWatchlist');
     if (stored) {
       setMyWatchlist(JSON.parse(stored));
+    }
+
+    // Load theme from localStorage (same as App.tsx)
+    const storedTheme = localStorage.getItem('gobapps-theme');
+    if (storedTheme) {
+      // Import themes from App.tsx or define them here
+      const themes: Theme[] = [
+        {
+          id: 'finance',
+          name: 'Finance Pro',
+          sector: '',
+          description: '',
+          colors: {
+            headerFrom: 'from-slate-800',
+            headerVia: 'via-slate-900',
+            headerTo: 'to-blue-900',
+            headerBorder: 'border-blue-600',
+            background: 'bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200',
+            cardBg: 'bg-white',
+            cardHover: 'hover:bg-white/70',
+            accent: 'bg-amber-600',
+            accentHover: 'hover:bg-amber-700',
+            textPrimary: 'text-slate-900',
+            textSecondary: 'text-slate-700'
+          }
+        },
+        {
+          id: 'tech',
+          name: 'Tech Modern',
+          sector: '',
+          description: '',
+          colors: {
+            headerFrom: 'from-purple-800',
+            headerVia: 'via-purple-900',
+            headerTo: 'to-indigo-900',
+            headerBorder: 'border-purple-500',
+            background: 'bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-100',
+            cardBg: 'bg-white',
+            cardHover: 'hover:bg-purple-50',
+            accent: 'bg-purple-600',
+            accentHover: 'hover:bg-purple-700',
+            textPrimary: 'text-purple-900',
+            textSecondary: 'text-purple-700'
+          }
+        }
+      ];
+      
+      const theme = themes.find(t => t.id === storedTheme);
+      if (theme) setCurrentTheme(theme);
+    } else {
+      // Default theme
+      setCurrentTheme({
+        id: 'finance',
+        name: 'Finance Pro',
+        sector: '',
+        description: '',
+        colors: {
+          headerFrom: 'from-slate-800',
+          headerVia: 'via-slate-900',
+          headerTo: 'to-blue-900',
+          headerBorder: 'border-blue-600',
+          background: 'bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200',
+          cardBg: 'bg-white',
+          cardHover: 'hover:bg-white/70',
+          accent: 'bg-amber-600',
+          accentHover: 'hover:bg-amber-700',
+          textPrimary: 'text-slate-900',
+          textSecondary: 'text-slate-700'
+        }
+      });
     }
   }, []);
 
@@ -210,9 +302,9 @@ const StocksNewsTab = () => {
   };
 
   const renderTicker = (data: StockData | null, name: string, symbol: string) => {
-    if (!data) return (
-      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
-        <div className="text-slate-400 text-sm">Erreur</div>
+    if (!data || !currentTheme) return (
+      <div className={`${currentTheme?.colors.cardBg || 'bg-slate-800/50'} rounded-xl p-4 border ${currentTheme?.colors.textSecondary?.replace('text-', 'border-') || 'border-slate-700'}/20`}>
+        <div className={`${currentTheme?.colors.textSecondary || 'text-slate-400'} text-sm`}>Erreur</div>
       </div>
     );
     
@@ -228,12 +320,12 @@ const StocksNewsTab = () => {
     }
     
     return (
-      <div key={symbol} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 hover:border-slate-600 transition-colors">
+      <div key={symbol} className={`${currentTheme.colors.cardBg} rounded-xl p-4 border ${currentTheme.colors.textSecondary.replace('text-', 'border-')}/20 ${currentTheme.colors.cardHover} transition-colors shadow-lg`}>
         {symbol.includes('OANDA:') && (
-          <div className="text-xs text-slate-400 mb-1">{symbol.replace('OANDA:', '')}</div>
+          <div className={`text-xs ${currentTheme.colors.textSecondary} mb-1`}>{symbol.replace('OANDA:', '')}</div>
         )}
-        <div className="text-sm font-semibold text-white mb-1">{name}</div>
-        <div className="text-xl font-light text-white mb-1">{priceStr}</div>
+        <div className={`text-sm font-semibold ${currentTheme.colors.textPrimary} mb-1`}>{name}</div>
+        <div className={`text-xl font-light ${currentTheme.colors.textPrimary} mb-1`}>{priceStr}</div>
         <div className={`text-sm font-medium ${changeClass}`}>
           {arrow} {Math.abs(data.change).toFixed(2)} ({Math.abs(data.changePercent).toFixed(2)}%)
         </div>
@@ -294,13 +386,13 @@ const StocksNewsTab = () => {
     );
   };
 
-  if (loading) {
+  if (loading || !currentTheme) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+      <div className={`min-h-screen ${currentTheme?.colors.background || 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900'} p-6`}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
-            <div className="text-slate-300">Chargement des données financières...</div>
+            <div className={currentTheme?.colors.textSecondary || 'text-slate-300'}>Chargement des données financières...</div>
           </div>
         </div>
       </div>
@@ -308,12 +400,12 @@ const StocksNewsTab = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
+    <div className={`min-h-screen ${currentTheme.colors.background} p-6`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 pb-6 border-b border-slate-700">
-          <div className="text-4xl font-light text-white mb-2">{currentTime}</div>
-          <div className="text-sm text-slate-400">{currentDate}</div>
+        <div className={`text-center mb-8 pb-6 border-b ${currentTheme.colors.textSecondary.replace('text-', 'border-')}/20`}>
+          <div className={`text-4xl font-light ${currentTheme.colors.textPrimary} mb-2`}>{currentTime}</div>
+          <div className={`text-sm ${currentTheme.colors.textSecondary}`}>{currentDate}</div>
         </div>
 
         {/* Watchlist Section */}
@@ -321,13 +413,13 @@ const StocksNewsTab = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-2">
               <TrendingUp className="text-green-400" size={20} />
-              <h2 className="text-xl font-semibold text-white">⭐ Ma Watchlist Live</h2>
+              <h2 className={`text-xl font-semibold ${currentTheme.colors.textPrimary}`}>⭐ Ma Watchlist Live</h2>
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             </div>
             <div className="flex space-x-2">
               <button
                 onClick={() => setShowWatchlistSettings(true)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors flex items-center space-x-2"
+                className={`px-4 py-2 ${currentTheme.colors.accent} ${currentTheme.colors.accentHover} text-white rounded-lg text-sm transition-colors flex items-center space-x-2`}
               >
                 <Settings size={16} />
                 <span>Gérer</span>
@@ -346,13 +438,13 @@ const StocksNewsTab = () => {
         <div className="mb-8">
           <div className="flex items-center space-x-2 mb-4">
             <Newspaper className="text-blue-400" size={20} />
-            <h2 className="text-xl font-semibold text-white">📰 News - Ma Watchlist</h2>
+            <h2 className={`text-xl font-semibold ${currentTheme.colors.textPrimary}`}>📰 News - Ma Watchlist</h2>
           </div>
-          <div className="bg-slate-800/30 rounded-xl border border-slate-700 max-h-80 overflow-y-auto">
+          <div className={`${currentTheme.colors.cardBg} rounded-xl border ${currentTheme.colors.textSecondary.replace('text-', 'border-')}/20 max-h-80 overflow-y-auto shadow-lg`}>
             {watchlistNews.length > 0 ? (
               watchlistNews.map(renderNewsItem)
             ) : (
-              <div className="p-6 text-center text-slate-400">
+              <div className={`p-6 text-center ${currentTheme.colors.textSecondary}`}>
                 Aucune news récente pour votre watchlist
               </div>
             )}
