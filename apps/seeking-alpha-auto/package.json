@@ -1,6 +1,6 @@
 {
   "name": "gobapps-hub",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hub principal GOBApps - Point d'entrée vers toutes les applications",
   "main": "index.js",
   "scripts": {
