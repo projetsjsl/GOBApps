@@ -1,8 +1,8 @@
 {
   "name": "gobapps",
   "version": "1.0.0",
-  "description": "GOBApps - Hub principal et interface de gestion d'accès aux applications propulsées par JSL AI",
-  "main": "index.js",
+  "description": "GOBApps - Interface de gestion d'accès aux applications propulsée par JSL AI",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -31,9 +31,14 @@
     "gobapps",
     "hub",
     "applications",
-    "interface"
+    "interface",
+    "dashboard",
+    "productivity"
   ],
   "author": "JSL AI",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": ".",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }
-

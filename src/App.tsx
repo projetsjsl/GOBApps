@@ -563,16 +563,17 @@ const GOBApps = () => {
         </div>
       </main>
 
-      <div className="fixed bottom-28 right-6 z-40">
+      <div className="fixed bottom-20 sm:bottom-28 right-4 sm:right-6 z-40">
         <button
           onClick={() => setIsEditing(!isEditing)}
-          className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+          className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
             isEditing 
               ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-blue-500/50' 
               : 'bg-white/90 backdrop-blur-xl text-slate-700 border-2 border-white/50 shadow-xl'
           }`}
         >
-          {isEditing ? <Check size={28} /> : <Edit3 size={24} />}
+          {isEditing ? <Check size={20} className="sm:hidden" /> : <Edit3 size={18} className="sm:hidden" />}
+          {isEditing ? <Check size={28} className="hidden sm:block" /> : <Edit3 size={24} className="hidden sm:block" />}
         </button>
       </div>
 
