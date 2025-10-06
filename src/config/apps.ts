@@ -25,15 +25,15 @@ export const apps: App[] = [
     features: ['Scraping automatique', 'Analyse de données', 'Alertes en temps réel', 'API Finnhub']
   },
   {
-    id: 'gobapps-interface',
-    name: 'GOBApps Interface',
-    description: 'Interface de gestion d\'accès aux applications avec thèmes personnalisables',
-    icon: '🎨',
-    path: '/apps/gobapps-interface',
-    localPath: '/apps/gobapps-interface',
+    id: 'stocks-news',
+    name: 'Stocks & News',
+    description: 'Dashboard financier avec données en temps réel et actualités',
+    icon: '📊',
+    path: '/apps/stocks-news',
+    localPath: '/apps/stocks-news',
     status: 'active',
-    category: 'Interface',
-    features: ['Gestion d\'applications', 'Thèmes personnalisables', 'Drag & Drop', 'Import/Export']
+    category: 'Finance',
+    features: ['Watchlist personnalisable', 'Données temps réel', 'Actualités financières', 'Calendrier économique']
   },
   {
     id: 'portfolio-tracker',
