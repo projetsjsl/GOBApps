@@ -1,7 +1,7 @@
 {
   "name": "gobapps",
   "version": "1.0.0",
-  "description": "GOBApps - Hub principal et interface de gestion d'accès aux applications propulsées par JSL AI",
+  "description": "Hub principal GOBApps - Point d'entrée vers toutes les applications propulsées par JSL AI",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -30,10 +30,8 @@
     "tailwindcss",
     "gobapps",
     "hub",
-    "applications",
-    "interface"
+    "applications"
   ],
   "author": "JSL AI",
   "license": "MIT"
 }
-
