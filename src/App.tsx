@@ -401,44 +401,46 @@ const GOBApps = () => {
       <div className="fixed inset-0 bg-gradient-to-br from-blue-400/10 via-purple-400/10 to-pink-400/10 pointer-events-none"></div>
       
       <header className="relative z-10">
-        <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-blue-900/95 backdrop-blur-xl text-white px-6 py-2 border-b border-white/10">
-          <div className="flex items-center justify-center text-sm font-medium">
+        <div className="bg-gradient-to-r from-slate-900/95 via-slate-800/95 to-blue-900/95 backdrop-blur-xl text-white px-4 sm:px-6 py-1.5 sm:py-2 border-b border-white/10">
+          <div className="flex items-center justify-center text-xs sm:text-sm font-medium">
             <span>{currentTime || '00:00'}</span>
           </div>
         </div>
         
         <div className="bg-gradient-to-r from-slate-900/80 via-slate-800/80 to-blue-900/80 backdrop-blur-2xl border-b border-white/10 shadow-2xl">
-          <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="bg-white/20 backdrop-blur-md rounded-2xl p-2.5 shadow-xl border border-white/30">
+              <div className="flex items-center space-x-2 sm:space-x-4">
+                <div className="bg-white/20 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-2.5 shadow-xl border border-white/30">
                   <img 
                     src="/logo-jslai.png" 
                     alt="JSL AI Logo" 
-                    className="w-10 h-10 object-contain"
+                    className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                   />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold tracking-tight drop-shadow-lg">GOBApps</h1>
-                  <p className="text-xs text-blue-100 font-medium">Propulsé par JSL AI</p>
+                  <h1 className="text-xl sm:text-2xl font-bold tracking-tight drop-shadow-lg">GOBApps</h1>
+                  <p className="text-[10px] sm:text-xs text-blue-100 font-medium">Propulsé par JSL AI</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
                 <button
                   onClick={() => setShowThemeModal(true)}
-                  className="w-10 h-10 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-xl transition-all flex items-center justify-center border border-white/20 shadow-lg"
+                  className="w-9 h-9 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-lg sm:rounded-xl transition-all flex items-center justify-center border border-white/20 shadow-lg"
                   title="Changer le thème"
                 >
-                  <Palette size={18} />
+                  <Palette size={16} className="sm:hidden" />
+                  <Palette size={18} className="hidden sm:block" />
                 </button>
                 
                 <div className="relative admin-menu-container">
                   <button
                     onClick={() => setShowAdminMenu(!showAdminMenu)}
-                    className="w-10 h-10 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-xl transition-all flex items-center justify-center border border-white/20 shadow-lg"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-lg sm:rounded-xl transition-all flex items-center justify-center border border-white/20 shadow-lg"
                     title="Administration"
                   >
-                    <Settings size={18} />
+                    <Settings size={16} className="sm:hidden" />
+                    <Settings size={18} className="hidden sm:block" />
                   </button>
                   
                   {showAdminMenu && (
@@ -487,8 +489,8 @@ const GOBApps = () => {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-8 relative z-10 pb-32">
-        <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-6 sm:py-8 relative z-10 pb-28 sm:pb-32">
+        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-3 sm:gap-4">
           {apps.sort((a, b) => a.order - b.order).map(app => (
             <div
               key={app.id}
@@ -500,35 +502,35 @@ const GOBApps = () => {
             >
               <div
                 onClick={() => isEditing ? handleEdit(app) : handleOpenApp(app.url)}
-                className={`flex flex-col items-center space-y-2 p-3 rounded-3xl transition-all duration-300 ${
+                className={`flex flex-col items-center space-y-1.5 sm:space-y-2 p-2 sm:p-3 rounded-2xl sm:rounded-3xl transition-all duration-300 ${
                   isEditing 
                     ? 'cursor-pointer bg-white/40 backdrop-blur-xl border border-white/40 shadow-xl' 
                     : 'cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl hover:scale-105 active:scale-95'
                 }`}
               >
                 <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-2xl shadow-2xl flex items-center justify-center border border-white/50 relative hexagon">
-                    <div className="w-10 h-10 flex items-center justify-center">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-2xl shadow-2xl flex items-center justify-center border border-white/50 relative hexagon">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
                       {app.logo && app.logo.length <= 4 && /\p{Emoji}/u.test(app.logo) ? (
-                        <div className="text-3xl">{app.logo}</div>
+                        <div className="text-2xl sm:text-3xl">{app.logo}</div>
                       ) : app.logo ? (
                         <img 
                           src={app.logo} 
                           alt={app.name} 
-                          className="w-10 h-10 object-contain"
+                          className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                             const parent = e.currentTarget.parentElement;
                             if (parent && !parent.querySelector('.fallback-initial')) {
                               const fallback = document.createElement('div');
-                              fallback.className = 'fallback-initial w-10 h-10 bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-bold text-lg rounded';
+                              fallback.className = 'fallback-initial w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-400 to-slate-500 flex items-center justify-center text-white font-bold text-base sm:text-lg rounded';
                               fallback.textContent = app.name.charAt(0).toUpperCase();
                               parent.appendChild(fallback);
                             }
                           }}
                         />
                       ) : (
-                        <div className="w-10 h-10 bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center text-white font-bold text-lg rounded">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center text-white font-bold text-base sm:text-lg rounded">
                           {app.name.charAt(0).toUpperCase()}
                         </div>
                       )}
@@ -541,8 +543,8 @@ const GOBApps = () => {
                     <div className="neural-dot neural-dot-6"></div>
                   </div>
                 </div>
-                <div className="text-center">
-                  <p className="text-[10px] font-semibold text-slate-900 line-clamp-1 drop-shadow-sm">{app.name}</p>
+                <div className="text-center w-full">
+                  <p className="text-[9px] sm:text-[10px] font-semibold text-slate-900 line-clamp-1 drop-shadow-sm px-0.5">{app.name}</p>
                 </div>
               </div>
             </div>
@@ -551,35 +553,46 @@ const GOBApps = () => {
           {isEditing && (
             <div
               onClick={handleAddNew}
-              className="flex flex-col items-center justify-center p-3 rounded-3xl cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95"
+              className="flex flex-col items-center justify-center p-2 sm:p-3 rounded-2xl sm:rounded-3xl cursor-pointer hover:bg-white/30 hover:backdrop-blur-xl transition-all duration-300 hover:scale-105 active:scale-95"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-2xl shadow-2xl flex items-center justify-center border-2 border-dashed border-white/60 hover:border-blue-400/60 transition-all hexagon">
-                <Plus size={28} className="text-slate-600" />
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-white/70 to-white/50 backdrop-blur-2xl shadow-2xl flex items-center justify-center border-2 border-dashed border-white/60 hover:border-blue-400/60 transition-all hexagon">
+                <Plus size={24} className="sm:hidden text-slate-600" />
+                <Plus size={28} className="hidden sm:block text-slate-600" />
               </div>
-              <p className="text-[10px] font-semibold text-slate-700 mt-2">Ajouter</p>
+              <p className="text-[9px] sm:text-[10px] font-semibold text-slate-700 mt-1.5 sm:mt-2">Ajouter</p>
             </div>
           )}
         </div>
       </main>
 
-      <div className="fixed bottom-28 right-6 z-40">
+      <div className="fixed bottom-24 sm:bottom-28 right-4 sm:right-6 z-40">
         <button
           onClick={() => setIsEditing(!isEditing)}
-          className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
+          className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 ${
             isEditing 
               ? 'bg-gradient-to-br from-blue-500 to-blue-600 text-white shadow-blue-500/50' 
               : 'bg-white/90 backdrop-blur-xl text-slate-700 border-2 border-white/50 shadow-xl'
           }`}
         >
-          {isEditing ? <Check size={28} /> : <Edit3 size={24} />}
+          {isEditing ? (
+            <>
+              <Check size={22} className="sm:hidden" />
+              <Check size={28} className="hidden sm:block" />
+            </>
+          ) : (
+            <>
+              <Edit3 size={20} className="sm:hidden" />
+              <Edit3 size={24} className="hidden sm:block" />
+            </>
+          )}
         </button>
       </div>
 
       <footer className="fixed bottom-0 left-0 right-0 pointer-events-none z-50">
-        <div className="max-w-md mx-auto px-4">
-          <div className="bg-white/90 backdrop-blur-3xl rounded-t-[2.5rem] shadow-2xl px-6 py-4 border-t border-white/50">
+        <div className="max-w-md mx-auto px-3 sm:px-4">
+          <div className="bg-white/90 backdrop-blur-3xl rounded-t-[2rem] sm:rounded-t-[2.5rem] shadow-2xl px-4 sm:px-6 py-3 sm:py-4 border-t border-white/50">
             <div className="flex justify-center">
-              <div className="w-32 h-1.5 bg-slate-900/40 rounded-full"></div>
+              <div className="w-24 sm:w-32 h-1 sm:h-1.5 bg-slate-900/40 rounded-full"></div>
             </div>
           </div>
         </div>
