@@ -1,6 +1,6 @@
 {
   "name": "gobapps-interface",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interface de gestion d'accès aux applications GOBApps",
   "main": "index.js",
   "scripts": {
