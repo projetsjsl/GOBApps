@@ -455,13 +455,13 @@ const StocksNewsTab = () => {
         <div className="mb-8">
           <div className="flex items-center space-x-2 mb-4">
             <Calendar className="text-purple-400" size={20} />
-            <h2 className="text-xl font-semibold text-white">📅 Calendrier Économique (Aujourd'hui)</h2>
+            <h2 className={`text-xl font-semibold ${currentTheme.colors.textPrimary}`}>📅 Calendrier Économique (Aujourd'hui)</h2>
           </div>
-          <div className="bg-slate-800/30 rounded-xl border border-slate-700 max-h-96 overflow-y-auto p-4">
+          <div className={`${currentTheme.colors.cardBg} rounded-xl border ${currentTheme.colors.textSecondary.replace('text-', 'border-')}/20 max-h-96 overflow-y-auto p-4 shadow-lg`}>
             {economicCalendar.length > 0 ? (
               economicCalendar.map(renderEconomicEvent)
             ) : (
-              <div className="text-center text-slate-400 py-8">
+              <div className={`text-center ${currentTheme.colors.textSecondary} py-8`}>
                 Aucun événement économique aujourd'hui
               </div>
             )}
@@ -472,13 +472,13 @@ const StocksNewsTab = () => {
         <div className="mb-8">
           <div className="flex items-center space-x-2 mb-4">
             <Globe className="text-orange-400" size={20} />
-            <h2 className="text-xl font-semibold text-white">📰 Actualités Économiques</h2>
+            <h2 className={`text-xl font-semibold ${currentTheme.colors.textPrimary}`}>📰 Actualités Économiques</h2>
           </div>
-          <div className="bg-slate-800/30 rounded-xl border border-slate-700 max-h-80 overflow-y-auto">
+          <div className={`${currentTheme.colors.cardBg} rounded-xl border ${currentTheme.colors.textSecondary.replace('text-', 'border-')}/20 max-h-80 overflow-y-auto shadow-lg`}>
             {generalNews.length > 0 ? (
               generalNews.map(renderNewsItem)
             ) : (
-              <div className="p-6 text-center text-slate-400">
+              <div className={`p-6 text-center ${currentTheme.colors.textSecondary}`}>
                 Aucune actualité disponible
               </div>
             )}
