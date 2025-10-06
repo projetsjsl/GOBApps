@@ -1,10 +1,10 @@
-# GOBApps
+# GOBApps (GOB Interface par défaut)
 
 Hub principal GOBApps - Point d'entrée vers toutes les applications propulsées par JSL AI.
 
 ## 🚀 Vue d'ensemble
 
-GOBApps est la page d'accueil qui centralise l'accès à toutes nos applications intelligentes. Il offre une interface moderne et intuitive pour naviguer entre les différentes solutions, avec un onglet dédié aux données financières en temps réel.
+GOBApps est la page d'accueil (GOB Interface) qui centralise l'accès à toutes nos applications intelligentes. Par défaut, l'ouverture du projet pointe désormais vers l'interface `apps/gobapps-interface`, qui contient la landing page principale et les icônes menant vers les autres apps. Il offre une interface moderne et intuitive pour naviguer entre les différentes solutions, avec un onglet dédié aux données financières en temps réel.
 
 **Landing page :** Interface de gestion d'applications avec thèmes personnalisables  
 **Applications :** Seeking Alpha Auto, Stocks & News, et futures applications
@@ -40,7 +40,7 @@ cd GOBApps
 # Installer les dépendances
 npm install
 
-# Lancer le serveur de développement
+# Lancer le serveur de développement (GOB Interface)
 npm run dev
 ```
 
@@ -83,7 +83,7 @@ GOBApps/                          # 🏠 Repository principal
 ### Vercel (Recommandé)
 
 1. Connectez votre repository GitHub à Vercel
-2. Vercel détectera automatiquement la configuration Vite
+2. Le déploiement ciblera l'app `apps/gobapps-interface`
 3. Le déploiement se fera automatiquement à chaque push
 
 ### Build manuel

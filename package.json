@@ -4,10 +4,10 @@
   "description": "Hub principal GOBApps - Point d'entrée vers toutes les applications propulsées par JSL AI",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "start": "vite"
+    "dev": "npm run --prefix apps/gobapps-interface dev",
+    "build": "npm run --prefix apps/gobapps-interface build",
+    "preview": "npm run --prefix apps/gobapps-interface preview",
+    "start": "npm run --prefix apps/gobapps-interface dev"
   },
   "dependencies": {
     "react": "^18.2.0",

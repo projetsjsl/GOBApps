@@ -1,7 +1,11 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
+  "buildCommand": "npm run --prefix apps/gobapps-interface build",
+  "outputDirectory": "apps/gobapps-interface/dist",
   "framework": "vite",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev"
+  "installCommand": "npm install && (cd apps/gobapps-interface && npm install)",
+  "devCommand": "npm run --prefix apps/gobapps-interface dev",
+  "rewrites": [
+    { "source": "/", "destination": "/apps/gobapps-interface/index.html" },
+    { "source": "/(.*)", "destination": "/apps/gobapps-interface/index.html" }
+  ]
 }
