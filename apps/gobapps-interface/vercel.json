@@ -7,6 +7,9 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "env": {
+    "REDEPLOY_MARK": "2025-10-06"
+  }
 }
 
