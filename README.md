@@ -1,27 +1,16 @@
-# GOBApps
+# GOBApps Interface
 
-Hub principal GOBApps - Point d'entrée vers toutes les applications propulsées par JSL AI.
+Interface de gestion d'accès aux applications GOBApps propulsée par JSL AI.
 
-## 🚀 Vue d'ensemble
+## 🚀 Fonctionnalités
 
-GOBApps est la page d'accueil qui centralise l'accès à toutes nos applications intelligentes. Il offre une interface moderne et intuitive pour naviguer entre les différentes solutions, avec un onglet dédié aux données financières en temps réel.
-
-**Landing page :** Interface de gestion d'applications avec thèmes personnalisables  
-**Applications :** Seeking Alpha Auto, Stocks & News, et futures applications
-
-## 📱 Applications disponibles
-
-### 🟢 Applications actives
-- **Seeking Alpha Auto** - Analyse automatique des actions et données financières
-- **Stocks & News** - Dashboard financier avec données en temps réel
-
-### 🟡 En développement
-- **Portfolio Tracker** - Suivi de portefeuille et analyse de performance
-- **AI Assistant** - Assistant IA pour l'analyse et conseils d'investissement
-
-### ⚪ Bientôt disponibles
-- **News Aggregator** - Agrégateur de nouvelles financières avec analyse de sentiment
-- **Market Scanner** - Scanner de marché pour identifier les opportunités
+- **Gestion d'applications** : Ajouter, modifier et supprimer des applications
+- **Thèmes personnalisables** : 6 thèmes prédéfinis (Finance, Tech, Créatif, Santé, Juridique, Écologie)
+- **Icônes flexibles** : Support des emojis et des URLs d'images
+- **Drag & Drop** : Réorganiser les applications par glisser-déposer
+- **Import/Export** : Sauvegarder et restaurer vos configurations
+- **Interface responsive** : Optimisée pour tous les écrans
+- **Design moderne** : Interface élégante avec effets de glassmorphism
 
 ## 🛠️ Technologies
 
@@ -35,7 +24,7 @@ GOBApps est la page d'accueil qui centralise l'accès à toutes nos applications
 ```bash
 # Cloner le repository
 git clone <repository-url>
-cd GOBApps
+cd gobapps-interface
 
 # Installer les dépendances
 npm install
@@ -43,40 +32,6 @@ npm install
 # Lancer le serveur de développement
 npm run dev
 ```
-
-## 🏗️ Structure du projet
-
-```
-GOBApps/                          # 🏠 Repository principal
-├── src/                          # Landing page (interface de gestion)
-│   ├── App.tsx                   # Composant principal avec onglets
-│   ├── components/               # Composants React
-│   └── config/                   # Configuration des applications
-├── apps/                         # Applications sous-jacentes
-│   ├── seeking-alpha-auto/       # Application finance existante
-│   ├── stocks-news/              # Dashboard financier
-│   └── [autres-apps]/           # Futures applications
-├── api/                          # API routes (Finnhub)
-└── package.json                  # Configuration du projet principal
-```
-
-## 🎨 Fonctionnalités du Hub
-
-### Landing Page (Interface de gestion)
-- **Interface moderne** avec design glassmorphism
-- **Recherche et filtrage** des applications
-- **Statuts visuels** (actif, développement, bientôt)
-- **Catégorisation** des applications
-- **Navigation intuitive** vers les sous-applications
-- **Responsive design** pour tous les écrans
-
-### Stocks & News (Onglet intégré)
-- **Watchlist personnalisable** avec données en temps réel
-- **Actualités financières** liées à votre portefeuille
-- **Calendrier économique** avec événements du jour
-- **Données de marché** (actions US/Canada, ETF, obligations)
-- **Interface moderne** avec design cohérent
-- **API Finnhub** intégrée pour les données financières
 
 ## 🚀 Déploiement
 
@@ -96,34 +51,29 @@ npm run build
 npm run preview
 ```
 
-## 🔗 Navigation
+## 🎨 Thèmes disponibles
 
-### Onglets principaux
-- **Hub Applications** → Interface principale avec toutes les applications
-- **Stocks & News** → Dashboard financier avec données en temps réel
+- **Finance Pro** : Palette bleu/gris professionnelle
+- **Tech Modern** : Palette violet/indigo moderne
+- **Créatif** : Palette rose/orange créative
+- **Santé** : Palette teal/cyan apaisante
+- **Juridique** : Palette gris sobre
+- **Écologie** : Palette vert/émeraude naturelle
 
-### Applications
-Le hub dirige vers les applications via des chemins relatifs :
-- `/apps/seeking-alpha-auto` → Application Seeking Alpha Auto
-- `/apps/stocks-news` → Dashboard Stocks & News
-- `/apps/portfolio-tracker` → Portfolio Tracker (en développement)
+## 📱 Utilisation
 
-## ⚙️ Configuration
+1. **Ajouter une application** : Cliquez sur le bouton d'édition puis sur "+"
+2. **Modifier une application** : Mode édition → clic sur l'app → modification
+3. **Réorganiser** : Mode édition → glisser-déposer
+4. **Changer de thème** : Bouton palette dans le header
+5. **Gérer les apps** : Menu administration → "Gérer les apps"
+6. **Import/Export** : Menu administration → Import/Export
 
-### Variables d'environnement
-Copiez `env.example` vers `.env.local` et configurez :
-```bash
-# Clé API Finnhub (gratuite sur https://finnhub.io/)
-FINNHUB_API_KEY=your_api_key_here
-```
+## 🔧 Configuration
 
-### API Finnhub
-L'onglet Stocks & News utilise l'API Finnhub pour :
-- Données de marché en temps réel
-- Actualités financières
-- Calendrier économique
-- Informations sur les entreprises
+Les données sont stockées localement dans le navigateur via `localStorage`. Pour partager vos configurations, utilisez la fonction d'export/import.
 
 ## 📄 Licence
 
 MIT License - Propulsé par JSL AI
+
